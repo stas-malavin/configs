@@ -1,0 +1,19 @@
+"Marks for vifm
+
+" My system: mark capital letters for system folders and anything outside Documents
+" Mark small case letters for Documents folders
+
+mark B /bin
+mark H ~/
+mark W /mnt/WIN/Users/Stas.Malavin
+mark d ~/Documents
+mark D ~/Downloads
+mark P ~/Pictures
+mark C ~/.config
+mark M /media/stas
+mark V ~/.vifm
+mark s /home/stas/Documents/LMR_SITE/_Site_new
+mark m ~/Documents/MORPH
+mark c ~/Documents/CHUK_SEA
+mark f ~/Documents/FREELANCE
+mark l /mnt/WIN/Users/Stas.Malavin/Documents/БИБЛИОТЕКА

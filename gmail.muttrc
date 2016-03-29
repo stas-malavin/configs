@@ -1,0 +1,18 @@
+set imap_user = "stas.malavin@gmail.com"
+set imap_pass = $my_pw_gmail
+set smtp_url = "smtp://stas.malavin@smtp.gmail.com:587/"
+set smtp_pass = $imap_pass
+set from = "stas.malavin@gmail.com"
+set realname = "Stas Malavin"
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set record = ""
+set trash = "+[Gmail]/Trash"
+
+# Connection options
+set ssl_force_tls = yes
+unset ssl_starttls
+
+## Hook -- IMPORTANT!
+account-hook $folder "set imap_user=stas.malavin@gmail.com"

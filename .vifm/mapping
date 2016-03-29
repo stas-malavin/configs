@@ -1,0 +1,104 @@
+" Mappings for vifm
+
+"%a     User arguments.  When  user  arguments  contain  macros,  they  are expanded before preforming substitution of %a.
+"%c %"c The current file under the cursor.
+"%C %"C The current file under the cursor in the other directory.
+"%f %"f All of the selected files.
+"%F %"F All of the selected files in the other directory list.
+"%b %"b Same as %f %F.
+"%d %"d Full path to current directory.
+"%D %"D Full path to other file list directory.
+"%rx %"rx  Full paths to files in the register {x}.  In case of invalid symbol in place of {x}, it's processed with  the  rest  of  the  line  and default register is used.
+"%m     Show command output in a menu.
+"%M     Same  as  %m,  but l (or Enter) key is handled like for :locate and :find commands.
+"%S     Show command output in the status bar.
+"%s     Execute command in split  window  of  active  terminal  multiplexer (ignored if not running inside one).
+"%i     Completely ignore command output.
+"Use %% if you need to put a percent sign in your command.
+"Note  that  %m,  %M, %s, %S and %i macros are mutually exclusive. Only the last one of them in the command will take effect.
+
+"You can use filename modifiers after %c, %C, %f, %F, %b, %d and %D macros.
+"       Supported modifiers are:
+"       - :p           - full path
+"       - :u            -  UNC name of path (e.g. "\\server" in "\\server\share"), Windows only.  Expands to current computer name for not UNC paths.
+"       - :~           - relative to the home directory
+"       - :.           - relative to current directory
+"       - :h           - head of the filename
+"       - :t           - tail of the filename
+"       - :r           - root of the filename (without last extension)
+"       - :e           - extension of the filename (last one)
+"       - :s?pat?sub?  - substitute the first occurrence of pat with sub.  You can use any character for '?', but it must not occur in pat or sub.
+"       - :gs?pat?sub? - like :s, but substitutes all occurrences of pat with sub. See  ':h  filename-modifiers'  in  Vim's  documentation for the detailed description. Using %x means expand corresponding macro escaping all  characters  that have  special  meaning.  And %"x means using of double quotes and escape only backslash and double quote characters, which is more useful on Windows systems.
+
+" Russing
+nmap о j
+nmap л k
+nmap п g
+nmap П G
+nmap р h
+nmap д l
+nmap сц cw
+
+" Reviewing all pictures in a directory with feh's *thumbnails* mode
+" Thumbnails are clickable!
+nmap F :!feh -t %d<cr>
+
+nmap s :sort<cr>
+nmap w :view<cr>
+nmap VV :!lxterminal -e vim -c sball %f<cr>
+nmap VD :!lxterminal -e vim -d %c %C<cr>
+nmap GG :!gimp %f &<cr>
+nmap AA :!audacious %f >/dev/null &<cr>
+nmap WW :win<space>
+nmap RB :rb<cr>
+nmap co :!zip -r %c:r.zip %f<cr>
+" (Alternative keybindings made in openbox config file:)
+"nmap vo :vol %s<cr>
+"nmap pr :!lxterminal -e htop<cr>
+
+" Open file in the background using its default program
+nmap gb :file &<cr>
+
+" Yank current directory path into the clipboard
+nmap yd :!echo %d | clipit %i<cr>
+
+" Yank current file path into the clipboard
+nmap yp :!echo %c:p | clipit %i<cr>
+
+" Yank current file name into the clipboard
+nmap yn :!echo %c:. | clipit %i<cr>
+
+" Mappings for faster renaming
+nmap I cw<c-a>
+nmap cc cw<c-u>
+nmap A cw<c-w>
+
+" Opening console in current directory
+nmap ,t :!lxterminal<cr>
+nmap ,p :!pcmanfm %d &<cr>
+
+" Create a new file with vim
+nmap ,n :vim<space>
+
+" Opening vim to edit .vifmrc
+nmap ,c :execute ':!lxterminal -e vim $MYVIFMRC' | restart<cr>
+nmap ,f :execute ':!lxterminal -e vim ~/.vifm/filetypes' | restart<cr>
+nmap ,m :execute ':!lxterminal -e vim ~/.vifm/mapping' | restart<cr>
+
+" Toggle wrap setting on ,w key
+nmap ,w :set wrap!<cr>
+
+" Example of standard two-panel file managers mappings
+nmap <f3> :!less %f<cr>
+nmap <f4> :edit<cr>
+nmap <f5> :copy<cr>
+nmap <f6> :move<cr>
+nmap <f7> :mkdir<space>
+nmap <f8> :delete<cr>
+nmap <f12> :restart<cr>
+
+" Syncing
+nmap S :sync<cr>
+nmap O :only<cr>
+
+cmap <c-j> <cr>

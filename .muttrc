@@ -1,0 +1,71 @@
+set mail_check = 600
+set timeout = 100
+set imap_keepalive = 100
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+
+source "gpg -dq /home/stas/.mypwds.gpg |"
+## OPENMAILBOX
+source "~/.mutt/openmailbox.muttrc"
+folder-hook stas.malavin@openmailbox.org/ 'source ~/.mutt/openmailbox.muttrc'
+## GMAIL
+source "~/.mutt/gmail.muttrc"
+folder-hook $folder 'source ~/.mutt/gmail.muttrc'
+
+set editor = "vim -S ~/.vim/msg_opt.vim"
+set imap_check_subscribed
+set move = no # Do not move read email into another folder
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+set auto_tag = yes
+auto_view text/html
+bind editor <Tab> complete-query
+bind editor ^T complete
+bind editor <space> noop 
+set include # include and quote the message to which I'm replying in my reply
+set pager_stop # Page-down at the end of a message should not go to the next message
+set markers=no # Don't use those plus signs on wrapping.
+set mark_old=no # Don't use "old" on emails.  They're either read or new.
+set delete=yes # Don't ask me if I want to delete messages; just do it.
+
+# Mappings
+macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
+macro pager j <next-line>
+macro pager k <previous-line>
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt/gmail.muttrc<enter><change-folder>!<enter>'
+macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.mutt/openmailbox.muttrc<enter><change-folder>!<enter>'
+macro index \cb |urlview\n
+macro pager \cb |urlview\n
+macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
+folder-hook . 'macro pager d "<exit><delete-message>" "Delete the message"'# Take me back to the index before deleting when in page view
+
+ignore *
+unignore from date subject to cc # Ignore all header fields, then unignore some
+hdr_order Date From To Cc
+alternative_order text/enriched text/plain text/html 
+
+# color WHERE		FOREGROUND	BACKGROUND 	REGEXP
+color	index		white		default 	~A	# all messages
+color	normal		white		default  		# all messages' normal text
+color	quoted		yellow		default 		# all messages' quoted text
+color	hdrdefault	blue		default			# all messages' headers
+color	status		brightyellow	black			# status line
+color	index		cyan		default		~P	# from me
+color	index		blue		default 	~N	# new
+color	attachment	yellow		default			# attachment text and bg
+color	index		brightmagenta	default 	~F	# flagged
+color	index		yellow		default 	~T  	# tagged
+color	index		red		default 	~D  	# deleted
+color	tree 		white		default  		# arrows
+color	indicator	black		yellow			# current item
+
+alias Markhaseva Elena Markhaseva <Elena.Markhaseva@zin.ru>
+alias Danil Danil Semelenov <mail@danil.mobi>
+alias Smirnov_AV Alexey Smirnov <alexeysmirnov11@gmail.com>
+alias Konina Tatyana Konina <tkonina@zin.ru>
+alias Kate Екатерина Алаева <chikita.gata@gmail.com>
+alias Khlebovich Vladislav Khlebovich <khleb32@mail.ru>
+alias Papa Анатолий Малявин <hiend59@bk.ru>
+alias Kijashko Павел Кияшко <kija4@inbox.ru>
+alias Mazen mazen raydan <raydanmazen@yahoo.com>

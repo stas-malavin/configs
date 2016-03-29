@@ -1,0 +1,18 @@
+set imap_user = "stas.malavin@openmailbox.org"
+set imap_pass = $my_pw_opmbx
+set smtp_url = "smtps://stas.malavin@openmailbox.org@smtp.openmailbox.org:465/"
+set smtp_pass = $imap_pass
+set from = "stas.malavin@openmailbox.org"
+set realname = "Stas Malavin"
+set folder = "imaps://imap.openmailbox.org:993"
+set spoolfile = "+INBOX"
+set postponed = "+Drafts"
+set record = "+Sent"
+set trash = "+Junk"
+
+# Connection options
+set ssl_force_tls = yes
+unset ssl_starttls
+
+## Hook -- IMPORTANT!
+account-hook $folder "set imap_user=stas.malavin@openmailbox.org"
