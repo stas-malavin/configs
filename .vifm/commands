@@ -12,22 +12,22 @@
 " %D the other window directory name.
 " %m run the command in a menu window
 
-command df df -h %m 2> /dev/null
-command diff vim -d %f %F
-command run !! ./%f
-command make !!make
-command vgrep vim "+grep %a"
-command nano lxterminal -e nano %a
-command vim lxterminal -e vim %a
-command ff firefox > /dev/null &
-command gimp gimp %a > /dev/null &
-command pdf zathura %c & >/dev/null
-command R lxterminal -e R
-command tar tar -xzf %c
-command rb sudo reboot
-command ej eject -v %d/%c
-command vol alsamixer
-command olli curlftpfs -o user=amphipod:amphipod amphipod.dnsalias.net -r ~/Documents/OLLI
-command cafa curlftpfs -o user=cafaca_stas kryton.beget.ru ~/Documents/LMR_SITE/temp.cafa.su
-"R44OMD2u
-command win sudo mount %a /dev/sda2 /mnt/WIN
+command! df df -h %m 2> /dev/null
+command! diff vim -d %f %F
+command! run !! ./%f
+command! make !!make
+command! vgrep vim "+grep %a"
+command! nano mate-terminal -e "nano %a"
+command! vim mate-terminal -e "vim %a"
+command! ff firefox > /dev/null &
+command! gimp gimp %a > /dev/null &
+command! pdf zathura %c & >/dev/null
+command! R mate-terminal "-e R"
+command! zipq zip -r %d:t %f
+command! zip zip %a -r %f
+command! rb reboot
+command! ej eject -v %d/%c
+command! vol alsamixer
+command! olli curlftpfs -o user=amphipod:amphipod amphipod.dnsalias.net -r /mnt/OLLI
+command! cafa curlftpfs -o user=cafaca_stas kryton.beget.ru ~/Documents/LMR_SITE/temp.cafa.su
+command! win sudo mount %a /dev/sda3 /mnt/Win

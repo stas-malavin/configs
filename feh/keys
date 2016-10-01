@@ -1,0 +1,32 @@
+# feh key configuration. Modified from: feh.finalrewind.org/examples/mxey/keys
+# Comments start with a # sign, do not use them mid-line.
+# Each line must be blank, a comment, or a key definition.
+# key definition: action name key1 [key2 [key3]]
+# Each <key> is an X11 keysym (as output by xev) with optional modifier.
+# For instance, C-x would be Ctrl+X, or 4-space Mod4+Space
+
+#menu_parent h Left
+#menu_child  l Right
+#menu_down   j Down
+#menu_up     k Up
+#menu_select space Return
+
+next_img C-l
+prev_img C-h
+remove D
+delete C-D
+
+scroll_up    k
+scroll_down  j
+scroll_left  h
+scroll_right l
+
+# zooming
+zoom_in  K
+zoom_out J
+zoom_default
+zoom_fit f
+
+# I only hit these accidentaly
+#save_image
+#save_filelist

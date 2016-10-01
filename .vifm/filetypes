@@ -26,6 +26,10 @@
 " You can also add %CLEAR if you want to clear screen before running FUSE
 " program.
 
+" Fasta files
+filetype *.fas,*.fst,*.fasta seaview %c &
+" supposing seaview is in the PATH
+
 " Vector graphics
 filetype *.svg inkview %c &
 
@@ -58,10 +62,14 @@ filetype *.tar.bz2 tar -xjf %c
 fileview *.tar.bz2 tar -tjf %c
 filetype *.tar.gz tar -xzf %c
 fileview *.tar.gz tar -tzf %c
+filetype *.tgz tar -xzf %c
+fileview *.tgz tar -tzf %c
 filetype *.tar.gz2 tar -xzf %c
 fileview *.tar.gz2 tar -tzf %c
 filetype *.tar.xz tar -xJf %c
 fileview *.tar.xz tar -tJf %c
+filetype *.7z 7z e %c
+fileview *.7z 7z l %c
 
 "shell scripts
 filetype *.sh bash %c
@@ -70,16 +78,16 @@ filetype *.sh bash %c
 filetype *.torrent transmission-gtk %c &
 
 " Open with vim in a separate terminal
-filetype *.md,*.txt,*.todo,*.notes,*.vim,*rc,*.css lxterminal -e vim %c
+filetype *.md,*.txt,*.todo,*.notes,*.vim,*rc,*.css mate-terminal -e "vim %c"
 
 " .msg -- for letters
-filetype *.msg lxterminal -e vim %c -S ~/.vim/msg_opt.vim
+filetype *.msg mate-terminal -e 'vim %c -S ~/.vim/msg_opt.vim'
 
 " R files
 " Remember!! For each new R project create a new folder!
-filetype *.r lxterminal -e vim %c
-filetype *.RData,*.rda,*.Rproj lxterminal -e 'bash -c "cp %c ./.RData; cp %c:r.R*ist ./.Rhistory; R; rm .RData; rm .Rhistory"'
-filetype *.Rhist,*.RHist,*Rhistory lxterminal -e vim %c
+filetype *.r,*.R mate-terminal -e 'vim %c'
+filetype *.RData,*.rda,*.Rproj mate-terminal -e 'bash -c "cp %c ./.RData; cp %c:r.R*ist ./.Rhistory; R; rm .RData; rm .Rhistory"'
+filetype *.Rhist,*.RHist,*Rhistory mate-terminal -e 'vim %c'
 
 " pdf
 filetype *.pdf zathura %c >/dev/null &,apvlv %c &,xpdf %c
@@ -89,10 +97,10 @@ fileview *.pdf pdftotext -nopgbrk %c -
 filextype *.ps,*.ps.gz gv %c %i&
 
 " Djvu
-filetype *.djvu zathura %c >/dev/null &
+filetype *.djvu atril %c 2>/dev/null &
 
 " Audio
-filetype *.wav,*.mp3,*.flac,*.ogg,*.m4a lxterminal -e mplayer %c
+filetype *.wav,*.mp3,*.flac,*.ogg,*.m4a mate-terminal -e mplayer %c
        "\ {Play using MOC}
        "\ mocp %c,
        "\ {Play using ffplay}
@@ -101,25 +109,26 @@ filetype *.wav,*.mp3,*.flac,*.ogg,*.m4a lxterminal -e mplayer %c
 fileviewer *.mp3 mp3info
 
 " Video
-filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv
+filetype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv
+        \ vlc %c >/dev/null &
 "        \ {View using ffplay}
 "        \ ffplay -fs %c,
 "        \ {View using Dragon}
 "        \ dragon %f,
-        \ {View using mplayer}
-        \ mplayer %f,
+"        \ {View using mplayer}
+"        \ mplayer %f,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob
          \ ffprobe -pretty %c 2>&1
 
 " local html
-filetype *.html,*.htm chromium-browser %c 2>/dev/null &
-" filetype *.html,*.htm lxterminal -e elinks %c 
+filetype *.html,*.htm firefox %c 2>/dev/null &
+" filetype *.html,*.htm mate-terminal -e elinks %c 
 
 " Object
 filetype *.o nm %f | less
 
 " Images
-filetype *.xcf gimp %c & 2> /dev/null
+filetype *.xcf gimp %c 2> /dev/null &
 filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.tif,*.tiff feh -Sfilename --verbose --draw-filename --draw-tinted --scale-down --start-at %c * & 
 "        \ {View in feh}
 "        \ {View in sxiv}
