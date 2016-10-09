@@ -1,0 +1,36 @@
+" .vimperaorrc by Dan Newmann
+
+" === Hints ===
+
+" Only use characters that don't suck to press.
+set hintchars="qwertasdfguophjk;"
+
+" Make hints look a lil nicer.
+hi Hint font-family: Arial;
+hi -a Hint border: 1px solid black;
+hi -a Hint padding: 1px 1px 0 1px;
+hi -a Hint color: black;
+hi -a Hint background-color: #fffcc8;
+hi -a Hint font-size: 12px;
+hi HintActive background-color: rgba(0,0,0,0) !important;
+hi HintElem background-color: rgba(0,0,0,0) !important;
+
+" === Command line ===
+
+" Make the bar at the bottom that shows the url a lil easier to see.
+hi -a StatusLine text-align: left;
+hi -a CmdLine font-size: 16px;
+hi -a Normal font-size: 16px;
+hi -a Normal color: #000; 
+hi -a StatusLine color: #000;
+
+" Make j and k scroll faster
+nnoremap j 10j
+nnoremap k 10k
+
+nnoremap K gt
+nnoremap J gT
+
+autocmd LocationChange .* js modes.passAllKeys = false
+autocmd LocationChange mail\\.google\\.com js modes.passAllKeys = true
+autocmd LocationChange docs\\.google\\.com js modes.passAllKeys = true
